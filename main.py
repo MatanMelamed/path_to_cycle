@@ -80,11 +80,13 @@ def connect_boxes(boxes):
 
 
 if __name__ == '__main__':
-    arr = [Box(0, 0), Box(1, 0), Box(2, 0),
-           Box(2, 1), Box(2, 2), Box(1, 2),
-           Box(0, 2), Box(0, 1)]
+    # arr = [Box(0, 0), Box(10, 10), Box(10, -10), Box(-10, 10), Box(-10, -10)]
+    arr = [Box(0, 0, Color(100, 30, 30))]
 
-    connect_boxes(arr)
+    for _ in range(10):
+        arr.append(Box(*(random.randint(-10, 10) for i in range(2))))
 
-    renderer = Renderer()
+    print(len(arr))
+
+    renderer = Renderer(1000, 1000, 30, 30)
     renderer.render_boxes(arr)

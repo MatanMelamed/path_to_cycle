@@ -1,43 +1,18 @@
-from enum import Enum
-
-
-class PLocation(Enum):
-    BOT_LEFT = 0
-    BOT_RIGHT = 1
-    TOP_LEFT = 2
-    TOP_RIGHT = 3
+class Color:
+    def __init__(self, r, g, b):
+        self.r = r
+        self.g = g
+        self.b = b
 
 
 class Box:
 
-    def __init__(self, x, y):
+    def __init__(self, x, y, color=Color(0, 100, 100), width=1, height=1):
         self.x = x
         self.y = y
-        self.points = [Point((x * 2), (y * 2)),
-                       Point((x * 2) + 1, (y * 2)),
-                       Point((x * 2), (y * 2) + 1),
-                       Point((x * 2) + 1, (y * 2) + 1)]
+        self.width = width
+        self.height = height
+        self.color = color
 
     def __repr__(self):
-        return f'({self.x}, {self.y})'
-
-
-class Point:
-
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-        self.connections = []
-
-    def __repr__(self):
-        return f'({self.x}, {self.y})'
-
-    def get_box_index(self):
-        return self.x // 2, self.y // 2
-
-    def connect_to(self, other_point):
-        self.connections.append(other_point)
-        other_point.connections.append(self)
-
-    def is_connected_to(self, other_point):
-        return other_point in self.connections
+        return f'({self.x}, {self.y}) [{self.width}, {self.height}]'
